@@ -13,9 +13,12 @@ document.getElementById('convertButton').addEventListener('click', function() {
     reader.onload = function(event) {
         var arrayBuffer = event.target.result;
 
+        console.log('ArrayBuffer:', arrayBuffer);
+
         // Decode the MP3 file using the Web Audio API
         decodeMP3(arrayBuffer)
             .then(binaryData => {
+                console.log('Binary data:', binaryData);
                 // Display binary data
                 outputDiv.textContent = binaryData;
             })
@@ -29,11 +32,13 @@ document.getElementById('convertButton').addEventListener('click', function() {
 });
 
 async function decodeMP3(arrayBuffer) {
+    console.log('Decoding MP3...');
     // Create audio context
     var audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
     // Decode audio data
     var audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    console.log('Audio buffer:', audioBuffer);
     
     // Convert audio buffer to binary string
     var binaryString = '';
