@@ -25,6 +25,7 @@ document.getElementById('convertButton').addEventListener('click', function() {
         outputDiv.textContent = data;
     })
     .catch(error => {
-        outputDiv.textContent = 'Error: ' + error.message;
+        console.error('Error fetching data:', error);
+        outputDiv.textContent = 'Error: Failed to fetch data. Please try again later.';
     });
 });
