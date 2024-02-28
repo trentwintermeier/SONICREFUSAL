@@ -1,44 +1,8 @@
-document.getElementById('convertButton').addEventListener('click', function() {
-    var fileInput = document.getElementById('fileInput');
-    var outputDiv = document.getElementById('output');
-    
-    if (fileInput.files.length === 0) {
-        outputDiv.textContent = 'Please select an MP3 file.';
-        return;
-    }
-    
-    var file = fileInput.files[0];
-    var reader = new FileReader();
-
-    reader.onload = function(event) {
-        var arrayBuffer = event.target.result;
-
-        console.log('ArrayBuffer:', arrayBuffer);
-
-        // Decode the MP3 file using the Web Audio API
-        decodeMP3(arrayBuffer)
-            .then(binaryData => {
-                console.log('Binary data:', binaryData);
-                // Display binary data
-                outputDiv.textContent = binaryData;
-            })
-            .catch(error => {
-                console.error('Error decoding MP3:', error);
-                outputDiv.textContent = 'Error: Failed to decode MP3.';
-            });
-    };
-
-    reader.readAsArrayBuffer(file);
-});
-
 async function decodeMP3(arrayBuffer) {
-    console.log('Decoding MP3...');
     // Create audio context
     var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
     // Decode audio data
     var audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-    console.log('Audio buffer:', audioBuffer);
     
     // Convert audio buffer to binary string
     var binaryString = '';
@@ -46,8 +10,12 @@ async function decodeMP3(arrayBuffer) {
     for (var i = 0; i < channelData.length; i++) {
         // Scale float value to integer range [-32768, 32767]
         var value = Math.round(channelData[i] * 32767);
-        // Convert integer value to 16-bit binary string
-        binaryString += String.fromCharCode(value & 0xFF, (value >> 8) & 0xFF);
+        // Convert integer value to binary string
+        var binaryValue = (value >>> 0).toString(2); // Convert to unsigned 32-bit integer and then to binary string
+        // Pad binary string with leading zeros to ensure it has 16 bits
+        binaryValue = '0'.repeat(16 - binaryValue.length) + binaryValue;
+        // Append binary value to the result
+        binaryString += binaryValue;
     }
 
     return binaryString;
