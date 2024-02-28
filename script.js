@@ -11,24 +11,33 @@ document.getElementById('convertButton').addEventListener('click', function() {
     var reader = new FileReader();
 
     reader.onload = function(event) {
-        var binaryData = event.target.result;
-        
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/convert'); // Endpoint to handle file conversion
-        xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                outputDiv.textContent = xhr.responseText;
-            } else {
-                outputDiv.textContent = 'Error: ' + xhr.statusText;
+        var base64Data = btoa(event.target.result); // Encode binary data as base64
+        var requestData = {
+            data: base64Data,
+            filename: file.name
+        };
+
+        fetch('/convert', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-        };
-        xhr.onerror = function() {
-            outputDiv.textContent = 'Error: Failed to send request.';
-        };
-        xhr.send(binaryData);
+            return response.text();
+        })
+        .then(data => {
+            outputDiv.textContent = data;
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            outputDiv.textContent = 'Error: Failed to fetch data. Please try again later.';
+        });
     };
 
-    reader.readAsArrayBuffer(file);
+    reader.readAsBinaryString(file); // Read file as binary string
 });
-
