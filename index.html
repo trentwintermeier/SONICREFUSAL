@@ -8,10 +8,11 @@
 </head>
 <body>
 
-<input type="file" id="fileInput" accept=".mp3">
-<button id="convertButton">Convert to Binary</button>
+<form id="mp3Form" enctype="multipart/form-data" method="post" action="/convert">
+    <input type="file" id="fileInput" name="file" accept=".mp3">
+    <button type="submit" id="convertButton">Convert to Binary</button>
+</form>
 <div id="output"></div>
 
-<script src="script.js"></script>
 </body>
 </html>
