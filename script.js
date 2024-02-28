@@ -36,16 +36,18 @@ async function decodeMP3(arrayBuffer) {
     
     // Convert audio buffer to binary string
     var binaryString = '';
-    var channelData = audioBuffer.getChannelData(0); // Get data from the first channel
-    for (var i = 0; i < channelData.length; i++) {
-        // Scale float value to integer range [-32768, 32767]
-        var value = Math.round(channelData[i] * 32767);
-        // Convert integer value to 16-bit binary string
-        var binaryValue = (value & 0xFFFF).toString(2); // Convert to binary string
-        // Pad binary string with leading zeros to ensure it has 16 bits
-        binaryValue = '0'.repeat(16 - binaryValue.length) + binaryValue;
-        // Append binary value to the result
-        binaryString += binaryValue;
+    for (var channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+        var channelData = audioBuffer.getChannelData(channel);
+        for (var i = 0; i < channelData.length; i++) {
+            // Scale float value to integer range [-32768, 32767]
+            var value = Math.round(channelData[i] * 32767);
+            // Convert integer value to 16-bit binary string
+            var binaryValue = (value & 0xFFFF).toString(2); // Convert to binary string
+            // Pad binary string with leading zeros to ensure it has 16 bits
+            binaryValue = '0'.repeat(16 - binaryValue.length) + binaryValue;
+            // Append binary value to the result
+            binaryString += binaryValue;
+        }
     }
 
     return binaryString;
