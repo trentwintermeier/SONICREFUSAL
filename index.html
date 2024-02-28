@@ -8,11 +8,12 @@
 </head>
 <body>
 
-<form id="mp3Form" enctype="multipart/form-data" method="post" action="/convert">
-    <input type="file" id="fileInput" name="file" accept=".mp3">
-    <button type="submit" id="convertButton">Convert to Binary</button>
-</form>
+<input type="file" id="fileInput" accept=".mp3">
+<button id="convertButton">Convert to Binary</button>
 <div id="output"></div>
 
+<script src="https://unpkg.com/audioworklet"></script>
+<script src="script.js"></script>
 </body>
 </html>
+
