@@ -1,1 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
 
+#fileInput {
+    display: none;
+}
+
+#convertButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#output {
+    margin-top: 20px;
+    font-size: 14px;
+}
