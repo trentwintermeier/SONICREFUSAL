@@ -1,56 +1,17 @@
-<column-set gutter="2">
-  <column-unit slot="0" span="9">
-    <h1><i>REFUSIA!</i></h1>
-  </column-unit>
-  <column-unit slot="1" span="3">
-    <div style="text-align: right">28 FEB 2023<br></div>
-  </column-unit>
-</column-set>
-<br>
-<br>
-<br>
-<div style="text-align: right">
-  <h2>DEVELOPED BY&nbsp;<br>
-  TRENT WINTERMEIER<br>
-  </h2><br><br>PHD STUDENT<br>
-  RHETORIC AND WRITING<br>
-  UNIVERSITY OF TEXAS AT AUSTIN
-</div>
-<br>
-<br>
-<hr>
-<br>
-<br>
-<column-set gutter="2">
-  <column-unit slot="0"></column-unit>
-  <column-unit slot="1">
-    <!-- Hidden file input field -->
-    <input type="file" id="fileInput" accept=".mp3" style="display: none;">
-    <!-- Button to trigger file input field -->
-    <div style="text-align: center"><span class="button-6-1" onclick="document.getElementById('fileInput').click();">ADD FILE</span></div>
-  </column-unit>
-  <column-unit slot="2">
-    <!-- Button to convert file to binary -->
-    <div style="text-align: center"><span class="button-3-1" id="convertButton" onclick="convertToBinary()">REFUSIA!</span></div>
-  </column-unit>
-  <column-unit slot="3"></column-unit>
-</column-set>
-<br>
-<br>
-<hr>
-<br>
-<br>
-<column-set>
-  <column-unit slot="0" span="2"></column-unit>
-  <column-unit slot="1" span="10">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mauris enim, imperdiet vel bibendum sit amet, ullamcorper eget magna. Praesent ullamcorper massa at lacus vestibulum, sit amet scelerisque dolor tincidunt. Donec id consequat dolor, a finibus arcu. Vestibulum sed nisi quam. Donec aliquet augue nisl, quis cursus tellus sodales et. Donec diam dolor, auctor non augue eget, egestas dictum quam. Curabitur nec elementum velit. Aliquam viverra porttitor arcu non blandit. Fusce odio nibh, bibendum ac tristique nec, viverra eget nulla. Aenean luctus nisi a dui efficitur dapibus. Integer sagittis malesuada tortor quis convallis. Phasellus ullamcorper mi ac libero cursus commodo. Nam tempus placerat dignissim. Curabitur ut aliquam nunc. Praesent maximus dignissim dictum. Ut sed elementum metus, ut egestas est.<br>
-    <br>
-    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras aliquet felis id justo bibendum convallis. Vestibulum ornare, lacus ut consequat gravida, magna erat condimentum eros, sed porta nisl mauris sed dui. Aenean augue orci, mollis sed euismod in, tincidunt vel mauris. Suspendisse fringilla risus lorem, nec interdum nisi pellentesque sed. Vivamus metus velit, dapibus at enim id, dignissim pulvinar nunc. Vivamus ornare tortor ac justo fringilla, non malesuada felis ultrices. Sed quis mauris a risus fringilla placerat eu ornare ante. Aenean malesuada metus eget mauris consequat malesuada. Nullam et justo diam. Nullam et ipsum ac elit porttitor eleifend eget a massa. Phasellus maximus pretium urna, sed rhoncus dui iaculis vel.<br>
-    <br>
-    Nam aliquet orci in lacus interdum sodales. Praesent vel purus nisi. Nunc vehicula varius mauris sed luctus. Pellentesque auctor purus at ligula mattis efficitur. Nullam sed lobortis nunc. Nam fermentum vel mi eget placerat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis vel ante lorem.<br>
-    <br>
-    Ut sed leo maximus, posuere ex eget, consequat leo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam ut metus vitae augue euismod varius eu vel sapien. Sed rutrum lobortis nulla, sed fringilla urna volutpat in. Fusce vulputate leo id risus ultrices, sit amet volutpat arcu feugiat. Suspendisse a efficitur mauris, non lobortis velit. Curabitur arcu erat, sodales vitae velit eget, porttitor gravida ligula. Aliquam sit amet pulvinar mauris, et eleifend tortor.
-  </column-unit>
-</column-set>
-<br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MP3 to Binary Converter</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+<input type="file" id="fileInput" accept=".mp3">
+<button id="convertButton">Convert to Binary</button>
+<div id="output"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
